@@ -60,18 +60,23 @@ public:
 class MonsterGenerator
 {
 public:
-
-	static Monster generateMonster()
-	{
-		Monster x (Monster::Orc, "Jack", 90);
-		return x;
-	}
-	
-	int getRandomNumber(int min, int max)
+	static int getRandomNumber(int min, int max)
 	{
 		static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
 		return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 	}
+
+	static Monster generateMonster()
+	{
+		//Monster x (Monster::Orc, "Jack", 90);
+		
+		Monster::MonsterType type = static_cast<Monster::MonsterType>(getRandomNumber(0, Monster::MAX_MONSTER_TYPES - 1));
+		int health = getRandomNumber(1, 100);
+		static std::string s_names[6]{ "John", "Brad", "Alex", "Thor", "Hulk", "Asnee" };
+		return Monster(type, s_names[getRandomNumber(0, 5)], health);
+	}
+	
+	
 };
 
 
