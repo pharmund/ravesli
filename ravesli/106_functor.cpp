@@ -3,7 +3,7 @@
 class Accumulator
 {
 private:
-int m_counter = 0;
+    int m_counter = 0;
 
 public:
 Accumulator()
